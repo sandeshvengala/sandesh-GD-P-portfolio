@@ -3,21 +3,48 @@ import { motion } from 'framer-motion';
 
 const sampleThemes = {
   realistic: [
-    { title: 'Indian Wedding Invitation Design', src: '/assets/images/samples/showcase-1.png' },
-    { title: 'Festival Poster Design', src: '/assets/images/samples/showcase-2.png' },
-    { title: 'Instagram Reels Creative', src: '/assets/images/samples/showcase-3.png' }
+    {
+      title: 'Indian Wedding Photography',
+      src: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      title: 'Diwali Festival Lights',
+      src: 'https://images.unsplash.com/photo-1608500218802-4f58e8e5b7f3?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      title: 'Indian Street Market',
+      src: 'https://images.unsplash.com/photo-1598514983318-2f64f8f4796c?auto=format&fit=crop&w=800&q=80'
+    }
   ],
   poster: [
-    { title: 'Indian Wedding Invitation Design', src: '/assets/images/samples/showcase-1.svg' },
-    { title: 'Festival Poster Design', src: '/assets/images/samples/showcase-2.svg' },
-    { title: 'Instagram Reels Creative', src: '/assets/images/samples/showcase-3.svg' }
+    {
+      title: 'Bollywood Style Poster',
+      src: 'https://images.unsplash.com/photo-1589820296156-2454bb8a6ad1?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      title: 'Holi Color Poster',
+      src: 'https://images.unsplash.com/photo-1611078489935-0cb964de46d6?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      title: 'Indian Product Ad',
+      src: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&w=800&q=80'
+    }
   ]
 };
 
 const sampleVideos = [
-  { title: 'Wedding Highlights Reel', src: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
-  { title: 'Birthday Celebration Edit', src: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4' },
-  { title: 'Indian Brand Product Video', src: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4' }
+  {
+    title: 'Indian Wedding Style Reel',
+    src: 'https://cdn.coverr.co/videos/coverr-indian-wedding-5176/1080p.mp4'
+  },
+  {
+    title: 'Festival Celebration (India vibe)',
+    src: 'https://cdn.coverr.co/videos/coverr-holi-colors-1576/1080p.mp4'
+  },
+  {
+    title: 'Product Ad Style',
+    src: 'https://cdn.coverr.co/videos/coverr-happy-woman-shopping-5173/1080p.mp4'
+  }
 ];
 
 export default function ScrollMediaSection() {
