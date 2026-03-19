@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { resumeDownloadUrl } from '../data/siteContent';
 
 const navItems = [
@@ -11,6 +11,9 @@ const navItems = [
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
+  const touchStartY = useRef(null);
+  const { pathname } = useLocation();
   const [darkMode, setDarkMode] = useState(() => {
     const stored = localStorage.getItem('portfolio-theme');
     if (stored) return stored === 'dark';
@@ -36,7 +39,50 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileOpen) {
+      setDragOffset(0);
+      touchStartY.current = null;
+    }
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const closeMobileMenu = () => setMobileOpen(false);
+
+  const handleTouchStart = (event) => {
+    touchStartY.current = event.touches[0].clientY;
+  };
+
+  const handleTouchMove = (event) => {
+    if (touchStartY.current === null) return;
+    const delta = event.touches[0].clientY - touchStartY.current;
+    if (delta > 0) {
+      setDragOffset(Math.min(delta, 140));
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (dragOffset > 70) {
+      closeMobileMenu();
+    } else {
+      setDragOffset(0);
+    }
+    touchStartY.current = null;
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-ink/10 bg-paper/80 backdrop-blur-lg transition dark:border-paper/10 dark:bg-ink/80">
@@ -72,7 +118,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMobileOpen((prev) => !prev)}
-            className="rounded-full border border-ink/20 px-3 py-2 text-xs font-semibold uppercase tracking-wider transition hover:border-accent hover:text-accent dark:border-paper/20 md:hidden"
+            className="rounded-full border border-ink/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition hover:border-accent hover:text-accent dark:border-paper/20 md:hidden"
             type="button"
             aria-label="Toggle navigation menu"
             aria-expanded={mobileOpen}
@@ -93,17 +139,34 @@ export default function Navbar() {
 
       {mobileOpen && (
         <div className="md:hidden">
-          <div className="fixed inset-0 z-40 bg-ink/50" onClick={closeMobileMenu} aria-hidden="true" />
-          <div className="fixed right-0 top-[73px] z-50 flex h-[calc(100vh-73px)] w-[min(82vw,320px)] flex-col border-l border-ink/10 bg-paper px-6 py-8 dark:border-paper/10 dark:bg-ink">
-            <div className="mb-6 flex flex-col gap-4">
+          <div className="fixed inset-0 z-40 bg-ink/45" onClick={closeMobileMenu} aria-hidden="true" />
+          <div
+            className="fixed left-1/2 top-[73px] z-50 w-[min(92vw,360px)] max-h-[72vh] overflow-y-auto rounded-2xl border border-ink/10 bg-paper px-5 py-4 shadow-xl transition-transform dark:border-paper/10 dark:bg-ink"
+            style={{ transform: `translate(-50%, ${dragOffset}px)` }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onTouchCancel={handleTouchEnd}
+          >
+            <div className="mb-4 flex justify-center">
+              <span className="h-1.5 w-10 rounded-full bg-ink/25 dark:bg-paper/25" aria-hidden="true" />
+            </div>
+
+            <div className="mb-5">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">Menu</p>
+            </div>
+
+            <div className="mb-6 flex flex-col gap-2">
               {navItems.map((item) => (
                 <NavLink
                   key={item.to}
                   to={item.to}
                   onClick={closeMobileMenu}
                   className={({ isActive }) =>
-                    `text-base font-semibold uppercase tracking-[0.15em] transition ${
-                      isActive ? 'text-accent' : 'hover:text-accent'
+                    `rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-[0.14em] transition ${
+                      isActive
+                        ? 'bg-accent/10 text-accent dark:bg-accent/20'
+                        : 'text-ink/80 hover:text-accent dark:text-paper/80'
                     }`
                   }
                 >
@@ -115,7 +178,7 @@ export default function Navbar() {
             <a
               href={resumeDownloadUrl}
               download
-              className="mb-4 inline-block rounded-full border border-ink/20 px-4 py-2 text-center text-xs font-semibold uppercase tracking-widest transition hover:-translate-y-0.5 hover:border-accent hover:text-accent dark:border-paper/20"
+              className="inline-flex items-center justify-center rounded-full border border-ink/20 px-4 py-2.5 text-center text-xs font-semibold uppercase tracking-[0.15em] transition hover:border-accent hover:text-accent dark:border-paper/20"
               onClick={closeMobileMenu}
             >
               Download Resume

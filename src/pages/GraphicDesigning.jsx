@@ -16,8 +16,8 @@ export default function GraphicDesigning() {
       <SectionTitle title="Graphic Designing" subtitle="Design Portfolio" />
 
       <p className="mb-8 max-w-3xl text-lg leading-relaxed text-ink/80 dark:text-paper/80">
-        Creative design work across branding, social media editing and reels, UI/UX, event posters, wedding
-        invitations, birthday creatives, and more.
+        Creative design work across branding, social media, UI/UX, event posters, wedding invitations, birthday
+        creatives, and more.
       </p>
 
       <div className="mb-10 flex flex-wrap gap-3">
