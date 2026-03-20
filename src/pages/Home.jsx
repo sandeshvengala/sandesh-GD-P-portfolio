@@ -107,21 +107,41 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="mt-12 grid gap-6 sm:grid-cols-3">
+            <div className="mt-8 flex flex-wrap gap-6">
               {highlightStats.map((item, idx) => (
                 <article
                   key={item.label}
-                  className="text-center"
+                  className="flex items-center gap-3"
                 >
-                  <div className="mb-4 flex justify-center">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-yellow-400/20 to-orange-500/20 text-lg font-bold text-accent">
-                      {idx === 0 ? 'P' : idx === 1 ? 'I' : 'L'}
-                    </div>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-ink/15 bg-white/75 dark:border-paper/20 dark:bg-ink/35">
+                    {idx === 0 && (
+                      <svg className="h-4 w-4 text-accent" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M16 3.13a4 4 0 0 1 0 7.75" />
+                      </svg>
+                    )}
+                    {idx === 1 && (
+                      <svg className="h-4 w-4 text-accent" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M20 3v4" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M22 5h-4" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 17v2" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 18H3" />
+                      </svg>
+                    )}
+                    {idx === 2 && (
+                      <svg className="h-4 w-4 text-accent" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                    )}
                   </div>
-                  <p className="mb-2 text-3xl font-bold text-accent md:text-4xl">{item.value}</p>
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/70 dark:text-paper/75">
-                    {item.label}
-                  </p>
+                  <div>
+                    <p className="text-sm font-display font-bold text-ink dark:text-paper">{item.value}</p>
+                    <p className="text-xs text-ink/60 dark:text-paper/60">{item.label}</p>
+                  </div>
                 </article>
               ))}
             </div>
