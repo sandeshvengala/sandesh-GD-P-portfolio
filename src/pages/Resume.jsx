@@ -126,7 +126,7 @@ export default function Resume() {
           Resume
         </p>
 
-        <h1 className="font-display text-4xl leading-tight md:text-6xl text-accent">Sandesh Vengala</h1>
+        <h1 className="font-display text-4xl leading-tight md:text-6xl bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 bg-clip-text text-transparent">Sandesh Vengala</h1>
         <p className="mt-3 text-sm font-semibold uppercase tracking-[0.16em] text-ink/65 dark:text-paper/70">
           Full Stack Developer & Creative Builder
         </p>

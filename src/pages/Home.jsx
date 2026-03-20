@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { heroImageUrl, socialLinks } from '../data/siteContent';
@@ -10,25 +10,47 @@ const highlightStats = [
 ];
 
 const rotatingRoles = [
-  'Creative Visual Studio',
   'Full Stack Developer',
   'Graphic Designer',
   'Photographer',
   'Social Media Editor',
-  'UI/UX Designer',
-  'Visual Storyteller'
+  'Community Builder'
 ];
+
+const longestRole = rotatingRoles.reduce((longest, current) =>
+  current.length > longest.length ? current : longest
+);
 
 export default function Home() {
   const [roleIndex, setRoleIndex] = useState(0);
+  const [typedText, setTypedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
-      setRoleIndex((prev) => (prev + 1) % rotatingRoles.length);
-    }, 2000);
+    const currentRole = rotatingRoles[roleIndex];
+    const typingSpeed = isDeleting ? 45 : 85;
+    const endPause = 900;
+    const startPause = 220;
+    let timer;
 
-    return () => window.clearInterval(timer);
-  }, []);
+    if (!isDeleting && typedText === currentRole) {
+      timer = window.setTimeout(() => {
+        setIsDeleting(true);
+      }, endPause);
+    } else if (isDeleting && typedText.length === 0) {
+      timer = window.setTimeout(() => {
+        setIsDeleting(false);
+        setRoleIndex((prev) => (prev + 1) % rotatingRoles.length);
+      }, startPause);
+    } else {
+      timer = window.setTimeout(() => {
+        const nextLength = typedText.length + (isDeleting ? -1 : 1);
+        setTypedText(currentRole.slice(0, nextLength));
+      }, typingSpeed);
+    }
+
+    return () => window.clearTimeout(timer);
+  }, [typedText, isDeleting, roleIndex]);
 
   return (
     <>
@@ -48,26 +70,17 @@ export default function Home() {
             </p>
 
             <h1 className="font-display text-4xl leading-[0.95] md:text-7xl">
-              Hi, I&apos;m <span className="text-accent">Sandesh Vengala</span>
+              Hi, I&apos;m <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 bg-clip-text text-transparent">Sandesh Vengala</span>
             </h1>
 
-            <div className="mt-5 flex items-center gap-2 text-base font-semibold uppercase tracking-[0.13em] text-ink/70 dark:text-paper/75 md:text-lg">
-              <span className="text-ink/70 dark:text-paper/75">Creative Builder -</span>
-              <span className="relative inline-flex h-8 min-w-[14rem] overflow-hidden align-middle text-accent">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={rotatingRoles[roleIndex]}
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -18 }}
-                    transition={{ duration: 0.35 }}
-                    className="absolute left-0 top-0"
-                  >
-                    {rotatingRoles[roleIndex]}
-                  </motion.span>
-                </AnimatePresence>
+            <div className="mt-5 text-sm font-semibold tracking-[0.04em] text-ink/70 dark:text-paper/75 md:text-base">
+              <span className="relative inline-flex h-7 items-center align-middle text-accent md:h-8">
+                <span className="invisible whitespace-nowrap">{longestRole}</span>
+                <span className="absolute left-0 top-1/2 -translate-y-1/2 whitespace-nowrap">
+                  {typedText}
+                  <span className="ml-0.5 inline-block h-[1em] w-[2px] bg-accent align-middle animate-pulse" />
+                </span>
               </span>
-              <span className="text-accent">|</span>
             </div>
 
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink/75 dark:text-paper/80">

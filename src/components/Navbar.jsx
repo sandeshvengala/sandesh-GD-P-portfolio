@@ -125,15 +125,16 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.24, ease: 'easeInOut' }}
-            className="overflow-hidden border-t border-ink/10 bg-paper/95 backdrop-blur-sm dark:border-paper/10 dark:bg-ink/95 md:hidden"
+            className="overflow-hidden border-t border-ink/10 bg-paper/95 shadow-lg backdrop-blur-sm dark:border-paper/10 dark:bg-ink/95 md:hidden"
           >
             <motion.div
               initial={{ y: -8, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -8, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="mx-auto flex w-[min(1120px,92vw)] flex-col gap-1 py-3"
+              className="mx-auto flex w-[min(1120px,92vw)] flex-col gap-1 py-4"
             >
+              <p className="px-1 pb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">Menu</p>
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.to}
@@ -146,12 +147,15 @@ export default function Navbar() {
                     to={item.to}
                     onClick={closeMobileMenu}
                     className={({ isActive }) =>
-                      `rounded-lg px-2 py-2 text-[12px] font-semibold uppercase tracking-[0.17em] transition ${
-                        isActive ? 'text-accent' : 'text-ink/80 hover:text-accent dark:text-paper/80'
+                      `flex items-center justify-between rounded-lg px-2 py-3 text-[15px] font-semibold uppercase tracking-[0.14em] transition ${
+                        isActive
+                          ? 'text-accent'
+                          : 'text-ink/85 hover:text-accent dark:text-paper/85'
                       }`
                     }
                   >
-                    {item.label}
+                    <span>{item.label}</span>
+                    <span className="text-accent/60">/</span>
                   </NavLink>
                 </motion.div>
               ))}
