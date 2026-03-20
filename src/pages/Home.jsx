@@ -14,6 +14,7 @@ const highlightStats = [
 const rotatingRoles = [
   'Full Stack Developer',
   'Graphic Designer',
+  'Video Editor',
   'Photography & Video',
   'Social Media Editor',
   'Community Builder'
