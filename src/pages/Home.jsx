@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { heroImageUrl, socialLinks } from '../data/siteContent';
 
 const highlightStats = [
+  { value: '1500+', label: 'Graphic Designs' },
+  { value: '150+', label: 'Photoshoots' },
   { value: '5+', label: 'Real-World Projects' },
   { value: '1+', label: 'Internship Experience' },
   { value: 'India', label: 'Based In' }
@@ -12,7 +14,7 @@ const highlightStats = [
 const rotatingRoles = [
   'Full Stack Developer',
   'Graphic Designer',
-  'Photographer',
+  'Photography & Video',
   'Social Media Editor',
   'Community Builder'
 ];
@@ -59,7 +61,7 @@ export default function Home() {
         <div className="heritage-pattern" aria-hidden="true" />
         <div className="section-orb -left-20 top-24 h-40 w-40 bg-accent/30" aria-hidden="true" />
         <div className="section-orb -right-20 bottom-20 h-44 w-44 bg-mint/30" aria-hidden="true" />
-        <div className="mx-auto grid w-[min(1120px,92vw)] gap-10 py-16 md:grid-cols-[1.15fr_0.85fr] md:py-28">
+        <div className="mx-auto grid w-[min(1120px,92vw)] gap-10 pb-16 pt-8 md:grid-cols-[1.15fr_0.85fr] md:pb-24 md:pt-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -114,24 +116,35 @@ export default function Home() {
                   className="flex items-center gap-3"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-ink/15 bg-white/75 dark:border-paper/20 dark:bg-ink/35">
-                    {idx === 0 && (
+                    {item.label === 'Graphic Designs' && (
                       <svg className="h-4 w-4 text-accent" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                        <circle cx="9" cy="7" r="4" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        <circle cx="13.5" cy="6.5" r="2.5" />
+                        <circle cx="19" cy="13" r="2" />
+                        <circle cx="6" cy="12" r="2" />
+                        <circle cx="10" cy="18" r="2" />
+                        <path d="M16 21a7 7 0 1 0 0-14h-1" />
                       </svg>
                     )}
-                    {idx === 1 && (
+                    {item.label === 'Photoshoots' && (
                       <svg className="h-4 w-4 text-accent" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M20 3v4" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M22 5h-4" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 17v2" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 18H3" />
+                        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                        <circle cx="12" cy="13" r="3" />
                       </svg>
                     )}
-                    {idx === 2 && (
+                    {item.label === 'Real-World Projects' && (
+                      <svg className="h-4 w-4 text-accent" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        <path d="M10 12h4" />
+                        <path d="M12 10v4" />
+                      </svg>
+                    )}
+                    {item.label === 'Internship Experience' && (
+                      <svg className="h-4 w-4 text-accent" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <rect x="2" y="7" width="20" height="14" rx="2" />
+                        <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                      </svg>
+                    )}
+                    {item.label === 'Based In' && (
                       <svg className="h-4 w-4 text-accent" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
                         <circle cx="12" cy="10" r="3" />
@@ -178,16 +191,20 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="relative"
+            className="relative flex justify-center md:justify-end"
           >
-            <div className="absolute -left-6 -top-6 h-28 w-28 rounded-full bg-accent/20 blur-2xl" />
-            <div className="absolute -bottom-8 -right-8 h-36 w-36 rounded-full bg-mint/30 blur-2xl" />
-            <div className="absolute inset-0 -z-10 rounded-[2rem] bg-gradient-to-br from-accent/10 via-transparent to-mint/15" />
-            <img
-              src={heroImageUrl}
-              alt="Sandesh"
-              className="relative h-[26rem] w-full rounded-3xl border border-white/30 object-cover object-[center_18%] shadow-card md:h-[36rem]"
-            />
+            <div className="relative h-72 w-72 sm:h-80 sm:w-80 lg:h-[380px] lg:w-[380px]">
+              <div className="absolute inset-0 rounded-full bg-accent/10 blur-3xl scale-110" />
+              <div className="absolute inset-3 rounded-full border border-accent/20" />
+              <div className="absolute inset-0 rounded-full border border-accent/15" />
+              <div className="relative h-full w-full overflow-hidden rounded-full border-4 border-white/10 shadow-card">
+                <img
+                  src={heroImageUrl}
+                  alt="Sandesh"
+                  className="h-full w-full object-cover object-[center_18%]"
+                />
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
