@@ -123,15 +123,15 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3 rounded-2xl border border-ink/10 bg-white/70 p-3 dark:border-paper/10 dark:bg-ink/30">
-              <span className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/60 dark:text-paper/65">Find Me</span>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/60 dark:text-paper/65">Find Me</span>
               {socialLinks.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-full border border-ink/15 bg-white/75 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition hover:border-accent hover:text-accent dark:border-paper/20 dark:bg-ink/35"
+                  className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/75 transition hover:text-accent dark:text-paper/80 dark:hover:text-accent"
                 >
                   {item.label}
                 </a>
