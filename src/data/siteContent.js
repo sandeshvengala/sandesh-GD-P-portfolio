@@ -9,6 +9,6 @@ export const aboutProfileImageUrl = '/assets/images/designer-profile.jpg';
 export const contactEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT || '';
 
 export const socialLinks = [
-  { label: 'Instagram', href: 'https://www.instagram.com/saandyyy.v/' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sandeshvengala' }
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sandeshvengala' },
+  { label: 'Instagram', href: 'https://www.instagram.com/saandyyy.v/' }
 ];

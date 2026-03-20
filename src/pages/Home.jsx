@@ -89,22 +89,25 @@ export default function Home() {
               real-world digital products.
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-3 sm:gap-4">
               <Link
                 to="/about"
-                className="rounded-full bg-accent px-7 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:-translate-y-1"
+                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:scale-105 md:px-7 md:py-3"
               >
                 Know More
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
               </Link>
               <Link
                 to="/contact"
-                className="rounded-full border border-ink/20 px-7 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] transition hover:border-accent hover:text-accent dark:border-paper/25"
+                className="inline-flex items-center rounded-full border border-ink/30 px-6 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink transition hover:border-accent hover:text-accent dark:border-paper/30 dark:text-paper/80 dark:hover:text-accent md:px-7 md:py-3"
               >
                 Get In Touch
               </Link>
             </div>
 
-            <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            <div className="mt-12 grid gap-6 sm:grid-cols-3">
               {highlightStats.map((item, idx) => (
                 <article
                   key={item.label}
@@ -123,7 +126,7 @@ export default function Home() {
               ))}
             </div>
 
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-12 flex flex-wrap items-center gap-3">
               <span className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/60 dark:text-paper/65">Find Me</span>
               {socialLinks.map((item) => (
                 <a
