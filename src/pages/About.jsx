@@ -73,14 +73,16 @@ export default function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.05 }}
         >
-          <div className="mb-6 grid gap-4 sm:grid-cols-3">
+          <div className="mb-8 grid gap-6 sm:grid-cols-3 text-center">
             {impactStats.map((item, idx) => (
-              <article key={item.label} className="rounded-2xl border border-ink/10 bg-white/80 p-4 shadow-sm backdrop-blur-sm dark:border-paper/10 dark:bg-ink/35">
-                <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent">
-                  {idx === 0 ? 'P' : idx === 1 ? 'I' : 'L'}
+              <article key={item.label}>
+                <div className="mb-4 flex justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-yellow-400/20 to-orange-500/20 text-lg font-bold text-accent">
+                    {idx === 0 ? 'P' : idx === 1 ? 'I' : 'L'}
+                  </div>
                 </div>
-                <p className="text-2xl font-bold text-accent">{item.value}</p>
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/65 dark:text-paper/70">{item.label}</p>
+                <p className="mb-2 text-3xl font-bold text-accent md:text-4xl">{item.value}</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/70 dark:text-paper/75">{item.label}</p>
               </article>
             ))}
           </div>

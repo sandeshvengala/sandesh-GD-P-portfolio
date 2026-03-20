@@ -104,17 +104,19 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            <div className="mt-10 grid gap-6 sm:grid-cols-3">
               {highlightStats.map((item, idx) => (
                 <article
                   key={item.label}
-                  className="rounded-2xl border border-ink/10 bg-white/80 p-4 shadow-sm backdrop-blur-sm dark:border-paper/10 dark:bg-ink/35"
+                  className="text-center"
                 >
-                  <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent">
-                    {idx === 0 ? 'P' : idx === 1 ? 'I' : 'L'}
+                  <div className="mb-4 flex justify-center">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-yellow-400/20 to-orange-500/20 text-lg font-bold text-accent">
+                      {idx === 0 ? 'P' : idx === 1 ? 'I' : 'L'}
+                    </div>
                   </div>
-                  <p className="text-2xl font-bold text-accent">{item.value}</p>
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/65 dark:text-paper/70">
+                  <p className="mb-2 text-3xl font-bold text-accent md:text-4xl">{item.value}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/70 dark:text-paper/75">
                     {item.label}
                   </p>
                 </article>
