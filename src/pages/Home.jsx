@@ -70,7 +70,7 @@ export default function Home() {
             </p>
 
             <h1 className="font-display text-4xl leading-[0.95] md:text-7xl">
-              Hi, I&apos;m <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 bg-clip-text text-transparent">Sandesh Vengala</span>
+              Hi, I&apos;m <span className="bg-gradient-name bg-clip-text text-transparent">Sandesh Vengala</span>
             </h1>
 
             <div className="mt-5 text-sm font-semibold tracking-[0.04em] text-ink/70 dark:text-paper/75 md:text-base">
