@@ -50,7 +50,7 @@ export default function About() {
       <SectionTitle
         title={
           <>
-            Hi, I am <span className="bg-gradient-name bg-clip-text text-transparent">Sandesh Vengala</span>
+            Hi, I am <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">Sandesh Vengala</span>
           </>
         }
         subtitle="Full Stack Developer & Creative Builder"
