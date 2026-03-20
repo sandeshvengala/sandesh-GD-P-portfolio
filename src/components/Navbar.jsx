@@ -1,18 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { resumeDownloadUrl } from '../data/siteContent';
 
 const navItems = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
+  { label: 'Resume', to: '/resume' },
   { label: 'Projects', to: '/projects' },
   { label: 'Contact', to: '/contact' }
 ];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [dragOffset, setDragOffset] = useState(0);
-  const touchStartY = useRef(null);
   const { pathname } = useLocation();
   const [darkMode, setDarkMode] = useState(() => {
     const stored = localStorage.getItem('portfolio-theme');
@@ -32,23 +31,8 @@ export default function Navbar() {
   }, [darkMode]);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : '';
-
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [mobileOpen]);
-
-  useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
-
-  useEffect(() => {
-    if (!mobileOpen) {
-      setDragOffset(0);
-      touchStartY.current = null;
-    }
-  }, [mobileOpen]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -63,42 +47,21 @@ export default function Navbar() {
 
   const closeMobileMenu = () => setMobileOpen(false);
 
-  const handleTouchStart = (event) => {
-    touchStartY.current = event.touches[0].clientY;
-  };
-
-  const handleTouchMove = (event) => {
-    if (touchStartY.current === null) return;
-    const delta = event.touches[0].clientY - touchStartY.current;
-    if (delta > 0) {
-      setDragOffset(Math.min(delta, 140));
-    }
-  };
-
-  const handleTouchEnd = () => {
-    if (dragOffset > 70) {
-      closeMobileMenu();
-    } else {
-      setDragOffset(0);
-    }
-    touchStartY.current = null;
-  };
-
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/10 bg-paper/80 backdrop-blur-lg transition dark:border-paper/10 dark:bg-ink/80">
-      <nav className="mx-auto flex w-[min(1120px,92vw)] items-center justify-between py-4">
-        <Link to="/" className="font-display text-3xl tracking-tight">
+    <header className="sticky top-0 z-50 border-b border-ink/10 bg-paper/70 backdrop-blur-xl transition dark:border-paper/10 dark:bg-ink/70">
+      <nav className="mx-auto flex w-[min(1120px,92vw)] items-center justify-between py-3.5">
+        <Link to="/" className="font-display text-[1.85rem] leading-none tracking-tight">
           Sandesh Vengala
         </Link>
 
-        <div className="hidden items-center gap-7 md:flex">
+        <div className="hidden items-center gap-2 rounded-full border border-ink/10 bg-white/75 px-3 py-2 dark:border-paper/10 dark:bg-ink/40 md:flex">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
-                `text-sm font-semibold uppercase tracking-[0.15em] transition ${
-                  isActive ? 'text-accent' : 'hover:text-accent'
+                `rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.17em] transition ${
+                  isActive ? 'bg-accent/10 text-accent' : 'hover:text-accent'
                 }`
               }
             >
@@ -108,84 +71,94 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
-          <a
-            href={resumeDownloadUrl}
-            download
-            className="hidden rounded-full border border-ink/20 px-4 py-2 text-xs font-semibold uppercase tracking-widest transition hover:-translate-y-0.5 hover:border-accent hover:text-accent dark:border-paper/20 md:inline-block"
-          >
-            Resume
-          </a>
-
           <button
             onClick={() => setMobileOpen((prev) => !prev)}
-            className="rounded-full border border-ink/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition hover:border-accent hover:text-accent dark:border-paper/20 md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/20 bg-white/70 transition hover:border-accent hover:text-accent dark:border-paper/20 dark:bg-ink/45 md:hidden"
             type="button"
             aria-label="Toggle navigation menu"
             aria-expanded={mobileOpen}
           >
-            {mobileOpen ? 'Close' : 'Menu'}
+            <span className="relative h-4 w-5" aria-hidden="true">
+              <span
+                className={`absolute left-0 top-0 h-[2px] w-5 rounded-full bg-current transition-all duration-300 ${
+                  mobileOpen ? 'translate-y-[7px] rotate-45' : ''
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-[7px] h-[2px] w-5 rounded-full bg-current transition-all duration-300 ${
+                  mobileOpen ? 'opacity-0' : 'opacity-100'
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-[14px] h-[2px] w-5 rounded-full bg-current transition-all duration-300 ${
+                  mobileOpen ? '-translate-y-[7px] -rotate-45' : ''
+                }`}
+              />
+            </span>
           </button>
 
           <button
             onClick={() => setDarkMode((prev) => !prev)}
-            className="rounded-full border border-ink/20 px-3 py-2 text-xs font-semibold uppercase tracking-wider transition hover:border-accent hover:text-accent dark:border-paper/20"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/20 bg-white/70 transition hover:border-accent hover:text-accent dark:border-paper/20 dark:bg-ink/45"
             type="button"
-            aria-label="Toggle dark mode"
+            aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
           >
-            {darkMode ? 'Light' : 'Dark'}
+            {darkMode ? (
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2.4M12 19.6V22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2 12h2.4M19.6 12H22M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                <path d="M20.2 15.4A8.8 8.8 0 1 1 8.6 3.8a7.4 7.4 0 1 0 11.6 11.6Z" />
+              </svg>
+            )}
           </button>
         </div>
       </nav>
 
-      {mobileOpen && (
-        <div className="md:hidden">
-          <div className="fixed inset-0 z-40 bg-ink/45" onClick={closeMobileMenu} aria-hidden="true" />
-          <div
-            className="fixed left-1/2 top-[73px] z-50 w-[min(92vw,360px)] max-h-[72vh] overflow-y-auto rounded-2xl border border-ink/10 bg-paper px-5 py-4 shadow-xl transition-transform dark:border-paper/10 dark:bg-ink"
-            style={{ transform: `translate(-50%, ${dragOffset}px)` }}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-            onTouchCancel={handleTouchEnd}
+      <AnimatePresence initial={false}>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.24, ease: 'easeInOut' }}
+            className="overflow-hidden border-t border-ink/10 bg-paper/95 backdrop-blur-sm dark:border-paper/10 dark:bg-ink/95 md:hidden"
           >
-            <div className="mb-4 flex justify-center">
-              <span className="h-1.5 w-10 rounded-full bg-ink/25 dark:bg-paper/25" aria-hidden="true" />
-            </div>
-
-            <div className="mb-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">Menu</p>
-            </div>
-
-            <div className="mb-6 flex flex-col gap-2">
-              {navItems.map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  onClick={closeMobileMenu}
-                  className={({ isActive }) =>
-                    `rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-[0.14em] transition ${
-                      isActive
-                        ? 'bg-accent/10 text-accent dark:bg-accent/20'
-                        : 'text-ink/80 hover:text-accent dark:text-paper/80'
-                    }`
-                  }
-                >
-                  {item.label}
-                </NavLink>
-              ))}
-            </div>
-
-            <a
-              href={resumeDownloadUrl}
-              download
-              className="inline-flex items-center justify-center rounded-full border border-ink/20 px-4 py-2.5 text-center text-xs font-semibold uppercase tracking-[0.15em] transition hover:border-accent hover:text-accent dark:border-paper/20"
-              onClick={closeMobileMenu}
+            <motion.div
+              initial={{ y: -8, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -8, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="mx-auto flex w-[min(1120px,92vw)] flex-col gap-1 py-3"
             >
-              Download Resume
-            </a>
-          </div>
-        </div>
-      )}
+              {navItems.map((item, index) => (
+                <motion.div
+                  key={item.to}
+                  initial={{ y: -6, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -6, opacity: 0 }}
+                  transition={{ duration: 0.16, delay: index * 0.03 }}
+                >
+                  <NavLink
+                    to={item.to}
+                    onClick={closeMobileMenu}
+                    className={({ isActive }) =>
+                      `rounded-lg px-2 py-2 text-[12px] font-semibold uppercase tracking-[0.17em] transition ${
+                        isActive ? 'text-accent' : 'text-ink/80 hover:text-accent dark:text-paper/80'
+                      }`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

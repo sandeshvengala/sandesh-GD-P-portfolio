@@ -2,63 +2,69 @@ import { motion } from 'framer-motion';
 import SectionTitle from '../components/SectionTitle';
 import { aboutProfileImageUrl } from '../data/siteContent';
 
-const skills = [
-  'Graphic Design',
-  'Branding and Identity',
-  'Social Media Design',
-  'Social Media Editing (Reels)',
+const focusAreas = [
+  'Full Stack Development',
   'UI/UX Design',
+  'Graphic Design',
   'Photography',
-  'Photo Editing',
-  'Typography',
-  'Color Theory',
+  'Automation Workflows',
+  'Problem Solving',
+  'MERN Stack',
+  'Firebase Integration',
+  'React Development',
   'Visual Storytelling'
 ];
 
-const tools = [
-  'Adobe Photoshop',
-  'Adobe Illustrator',
+const technologies = [
+  'React.js',
+  'Tailwind CSS',
+  'JavaScript (ES6+)',
+  'Node.js',
+  'Express.js',
+  'MongoDB',
+  'Firebase',
+  'MySQL',
+  'Git & GitHub',
+  'REST APIs',
+  'n8n',
+  'Postman',
+  'Vercel',
+  'Netlify',
   'Figma',
-  'Canva',
-  'Premiere Pro',
-  'After Effects',
-  'Lightroom',
-  'Camera (DSLR / Mobile Photography)'
+  'Adobe Photoshop',
+  'Adobe Premiere Pro'
 ];
 
-const photographyWork = [
-  {
-    title: 'Portrait Photography',
-    description: 'Captured expressive portraits focusing on lighting, composition, and emotions.'
-  },
-  {
-    title: 'Street Photography',
-    description: 'Captured real-life candid moments that tell stories of everyday life.'
-  },
-  {
-    title: 'Nature Photography',
-    description: 'Focused on landscapes, greenery, and natural lighting to create aesthetic visuals.'
-  },
-  {
-    title: 'Product Photography',
-    description: 'Captured clean and professional product shots suitable for branding and marketing.'
-  }
+const impactStats = [
+  { value: '5+', label: 'Real-World Projects' },
+  { value: '1+', label: 'Internship Experience' },
+  { value: '2027', label: 'Expected Graduation' }
 ];
 
 export default function About() {
   return (
     <section className="mx-auto w-[min(1120px,92vw)] py-20 md:py-24">
-      <SectionTitle title="About Me" subtitle="Designer Profile" />
+      <p className="mb-4 inline-flex rounded-full border border-accent/30 bg-accent/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+        Available For Opportunities
+      </p>
+      <SectionTitle
+        title={
+          <>
+            Hi, I am <span className="text-accent">Sandesh Vengala</span>
+          </>
+        }
+        subtitle="Full Stack Developer & Creative Builder"
+      />
 
-      <div className="grid gap-10 md:grid-cols-[1fr_1.2fr]">
+      <div className="grid gap-10 rounded-3xl border border-ink/10 bg-white/75 p-6 shadow-card backdrop-blur-sm dark:border-paper/10 dark:bg-ink/30 md:grid-cols-[1fr_1.2fr] md:p-8">
         <motion.img
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           src={aboutProfileImageUrl}
-          alt="Designer portrait"
-          className="h-96 w-full rounded-3xl object-cover shadow-card"
+          alt="Sandesh profile"
+          className="h-96 w-full rounded-3xl border border-white/30 object-cover shadow-card"
         />
 
         <motion.div
@@ -67,65 +73,55 @@ export default function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.05 }}
         >
-          <p className="mb-6 text-lg leading-relaxed text-ink/80 dark:text-paper/80">
-            I am a creative graphic designer and passionate photographer who loves blending visuals with storytelling.
-            I specialize in branding, social media creatives, and UI design, along with capturing aesthetic and
-            meaningful photographs.
-          </p>
-
-          <p className="mb-6 text-lg leading-relaxed text-ink/80 dark:text-paper/80">
-            I enjoy turning ideas into impactful designs and capturing real-life moments through my lens. My goal is
-            to create visuals that not only look beautiful but also communicate emotions and messages effectively.
-          </p>
-
-          <div className="flex flex-wrap gap-3">
-            {skills.map((skill) => (
-              <span
-                key={skill}
-                className="rounded-full border border-ink/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] dark:border-paper/20"
-              >
-                {skill}
-              </span>
+          <div className="mb-6 grid gap-3 sm:grid-cols-3">
+            {impactStats.map((item, idx) => (
+              <article key={item.label} className="rounded-2xl border border-ink/10 bg-white/75 p-4 dark:border-paper/10 dark:bg-ink/30">
+                <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-xs font-bold text-accent">
+                  {idx === 0 ? 'P' : idx === 1 ? 'I' : 'G'}
+                </div>
+                <p className="text-2xl font-bold text-accent">{item.value}</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/65 dark:text-paper/70">{item.label}</p>
+              </article>
             ))}
           </div>
 
-          <div className="mt-6">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-accent">Tools</p>
-            <div className="flex flex-wrap gap-3">
-              {tools.map((tool) => (
-                <span
-                  key={tool}
-                  className="rounded-full border border-ink/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] dark:border-paper/20"
-                >
-                  {tool}
-                </span>
-              ))}
-            </div>
-          </div>
+          <p className="mb-6 text-lg leading-relaxed text-ink/80 dark:text-paper/80">
+            I am a passionate and versatile developer and designer focused on building modern, user-centric digital
+            experiences. With a strong foundation in web development and UI/UX design, I specialize in responsive,
+            interactive, and visually appealing applications.
+          </p>
 
-          <div className="mt-6 rounded-2xl border border-ink/10 bg-white/70 p-4 dark:border-paper/10 dark:bg-ink/30">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-accent">Experience</p>
-            <p className="text-sm text-ink/80 dark:text-paper/80">
-              Freelance Graphic Designer & Photographer: Worked on branding projects, social media creatives, and
-              reels editing, along with photography for personal and community-based work like The Student Spot.
-            </p>
-          </div>
+          <p className="mb-6 text-lg leading-relaxed text-ink/80 dark:text-paper/80">
+            I am currently developing The Student Spot, a platform aimed at empowering students through resources,
+            community engagement, and innovation. Alongside development, I work on graphic design and photography to
+            bring a strong visual perspective into every product.
+          </p>
 
-          <div className="mt-6">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-accent">Photography Section</p>
-            <div className="grid gap-3 md:grid-cols-2">
-              {photographyWork.map((item) => (
-                <article
-                  key={item.title}
-                  className="rounded-2xl border border-ink/10 bg-white/70 p-4 dark:border-paper/10 dark:bg-ink/30"
-                >
-                  <h3 className="mb-2 text-base font-semibold">{item.title}</h3>
-                  <p className="text-sm text-ink/80 dark:text-paper/80">{item.description}</p>
-                </article>
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-3">
+            {focusAreas.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-ink/20 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] dark:border-paper/20 dark:bg-ink/35"
+              >
+                {item}
+              </span>
+            ))}
           </div>
         </motion.div>
+      </div>
+
+      <div className="mt-8 rounded-3xl border border-ink/10 bg-white/85 p-6 shadow-card backdrop-blur-sm dark:border-paper/10 dark:bg-ink/35">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-accent">Skills & Technologies</p>
+        <div className="flex flex-wrap gap-2">
+          {technologies.map((item) => (
+            <span
+              key={item}
+              className="rounded-full border border-ink/20 bg-white/70 px-3 py-1.5 text-xs font-semibold dark:border-paper/20 dark:bg-ink/25"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );

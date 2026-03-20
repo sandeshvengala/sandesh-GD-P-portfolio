@@ -8,7 +8,7 @@ export default function ProjectCard({ project, index = 0 }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.45, delay: index * 0.08 }}
-      className="group overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-card transition dark:border-paper/10 dark:bg-ink/40"
+      className="group overflow-hidden rounded-3xl border border-ink/10 bg-white/85 shadow-card transition dark:border-paper/10 dark:bg-ink/35"
     >
       <div className="relative h-56 overflow-hidden bg-ink/5 dark:bg-paper/5">
         <img
@@ -22,9 +22,9 @@ export default function ProjectCard({ project, index = 0 }) {
       </div>
 
       <div className="p-6">
-        <p className="mb-2 text-sm font-medium text-ink/60 dark:text-paper/60">{project.year}</p>
-        <h3 className="mb-3 text-2xl font-semibold">{project.title}</h3>
-        <p className="mb-5 text-ink/70 dark:text-paper/80">{project.shortDescription}</p>
+        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink/60 dark:text-paper/60">{project.year}</p>
+        <h3 className="mb-3 text-2xl font-semibold leading-tight">{project.title}</h3>
+        <p className="mb-5 text-sm leading-relaxed text-ink/70 dark:text-paper/80">{project.shortDescription}</p>
 
         <Link
           to={`/projects/${project.slug}`}

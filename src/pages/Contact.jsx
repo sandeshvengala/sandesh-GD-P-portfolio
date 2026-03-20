@@ -61,6 +61,9 @@ export default function Contact() {
 
   return (
     <section className="mx-auto w-[min(1120px,92vw)] py-20 md:py-24">
+      <p className="mb-4 inline-flex rounded-full border border-accent/30 bg-accent/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+        Get In Touch
+      </p>
       <SectionTitle title="Contact" subtitle="Start a Project" />
 
       <div className="grid gap-10 md:grid-cols-[1fr_1.1fr]">
@@ -68,18 +71,30 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="space-y-5"
+          className="space-y-5 rounded-3xl border border-ink/10 bg-white/80 p-6 shadow-card backdrop-blur-sm dark:border-paper/10 dark:bg-ink/35"
         >
           <p className="text-lg leading-relaxed text-ink/80 dark:text-paper/80">
             Let us work together to create something amazing. Feel free to reach out for collaborations, freelance
             work, or project discussions.
           </p>
-          <p className="font-semibold">Email: {contactEmail}</p>
-          <p className="font-semibold">Phone: {contactPhone}</p>
-          <p className="font-semibold">Location: {contactLocation}</p>
-          <div className="flex gap-5 text-sm font-semibold uppercase tracking-[0.15em]">
+          <p className="rounded-xl border border-ink/10 bg-white/75 px-4 py-3 font-semibold dark:border-paper/10 dark:bg-ink/25">
+            Email: {contactEmail}
+          </p>
+          <p className="rounded-xl border border-ink/10 bg-white/75 px-4 py-3 font-semibold dark:border-paper/10 dark:bg-ink/25">
+            Phone: {contactPhone}
+          </p>
+          <p className="rounded-xl border border-ink/10 bg-white/75 px-4 py-3 font-semibold dark:border-paper/10 dark:bg-ink/25">
+            Location: {contactLocation}
+          </p>
+          <div className="flex flex-wrap gap-3 text-sm font-semibold uppercase tracking-[0.15em]">
             {socialLinks.map((item) => (
-              <a key={item.label} href={item.href} className="transition hover:text-accent" target="_blank" rel="noreferrer">
+              <a
+                key={item.label}
+                href={item.href}
+                className="rounded-full border border-ink/15 px-4 py-2 transition hover:border-accent hover:text-accent dark:border-paper/20"
+                target="_blank"
+                rel="noreferrer"
+              >
                 {item.label}
               </a>
             ))}
@@ -90,7 +105,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-3xl border border-ink/10 bg-white p-6 shadow-card dark:border-paper/10 dark:bg-ink/35"
+          className="rounded-3xl border border-ink/10 bg-white/85 p-6 shadow-card backdrop-blur-sm dark:border-paper/10 dark:bg-ink/35"
           onSubmit={handleSubmit}
         >
           <div className="mb-4">
@@ -101,7 +116,7 @@ export default function Contact() {
               id="name"
               name="name"
               type="text"
-              className="w-full rounded-xl border border-ink/20 bg-transparent px-4 py-3 outline-none transition focus:border-accent dark:border-paper/20"
+              className="w-full rounded-xl border border-ink/20 bg-white/70 px-4 py-3 outline-none transition focus:border-accent dark:border-paper/20 dark:bg-ink/30"
               placeholder="Your full name"
               value={formData.name}
               onChange={handleChange}
@@ -117,7 +132,7 @@ export default function Contact() {
               id="email"
               name="email"
               type="email"
-              className="w-full rounded-xl border border-ink/20 bg-transparent px-4 py-3 outline-none transition focus:border-accent dark:border-paper/20"
+              className="w-full rounded-xl border border-ink/20 bg-white/70 px-4 py-3 outline-none transition focus:border-accent dark:border-paper/20 dark:bg-ink/30"
               placeholder="you@company.com"
               value={formData.email}
               onChange={handleChange}
@@ -133,7 +148,7 @@ export default function Contact() {
               id="message"
               name="message"
               rows="5"
-              className="w-full rounded-xl border border-ink/20 bg-transparent px-4 py-3 outline-none transition focus:border-accent dark:border-paper/20"
+              className="w-full rounded-xl border border-ink/20 bg-white/70 px-4 py-3 outline-none transition focus:border-accent dark:border-paper/20 dark:bg-ink/30"
               placeholder="Tell me about your project goals"
               value={formData.message}
               onChange={handleChange}
