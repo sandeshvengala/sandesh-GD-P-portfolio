@@ -137,21 +137,21 @@ export default function Resume() {
           <span className="rounded-full border border-ink/15 bg-white/70 px-4 py-2 dark:border-paper/20 dark:bg-ink/30">{contactLocation}</span>
         </div>
 
-        <div className="mt-8 grid gap-3 md:grid-cols-3">
-          <article className="rounded-2xl border border-ink/10 bg-white/75 p-4 dark:border-paper/10 dark:bg-ink/25">
-            <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-xs font-bold text-accent">P</div>
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <article className="rounded-2xl border border-ink/10 bg-white/80 p-4 shadow-sm backdrop-blur-sm dark:border-paper/10 dark:bg-ink/35">
+            <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent">P</div>
             <p className="text-2xl font-bold text-accent">5+</p>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/65 dark:text-paper/70">Real-World Projects</p>
           </article>
-          <article className="rounded-2xl border border-ink/10 bg-white/75 p-4 dark:border-paper/10 dark:bg-ink/25">
-            <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-xs font-bold text-accent">I</div>
+          <article className="rounded-2xl border border-ink/10 bg-white/80 p-4 shadow-sm backdrop-blur-sm dark:border-paper/10 dark:bg-ink/35">
+            <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent">I</div>
             <p className="text-2xl font-bold text-accent">1+</p>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/65 dark:text-paper/70">Internship Experience</p>
           </article>
-          <article className="rounded-2xl border border-ink/10 bg-white/75 p-4 dark:border-paper/10 dark:bg-ink/25">
-            <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-xs font-bold text-accent">G</div>
-            <p className="text-2xl font-bold text-accent">2027</p>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/65 dark:text-paper/70">Expected Graduation</p>
+          <article className="rounded-2xl border border-ink/10 bg-white/80 p-4 shadow-sm backdrop-blur-sm dark:border-paper/10 dark:bg-ink/35">
+            <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent">L</div>
+            <p className="text-2xl font-bold text-accent">India</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/65 dark:text-paper/70">Based In</p>
           </article>
         </div>
       </div>
